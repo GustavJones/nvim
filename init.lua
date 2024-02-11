@@ -1,2 +1,6 @@
--- bootstrap lazy.nvim, LazyVim and your plugins
-require("config.lazy")
+require("GustavJones/maps")
+require("GustavJones/lazy")
+require("GustavJones/lspzero")
+require("GustavJones/treesitter")
+
+vim.cmd.colorscheme("carbonfox")
