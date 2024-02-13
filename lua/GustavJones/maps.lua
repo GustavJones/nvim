@@ -38,6 +38,22 @@ vim.keymap.set("n", "<M-n>", function() vim.cmd.wincmd("|") end)
 vim.keymap.set("n", "<M-h>", function() vim.cmd.wincmd("<") end)
 vim.keymap.set("n", "<M-l>", function() vim.cmd.wincmd(">") end)
 
+vim.keymap.set("t", "<C-h>", function() vim.cmd.wincmd("h") end)
+vim.keymap.set("t", "<C-j>", function() vim.cmd.wincmd("j") end)
+vim.keymap.set("t", "<C-k>", function() vim.cmd.wincmd("k") end)
+vim.keymap.set("t", "<C-l>", function() vim.cmd.wincmd("l") end)
+
+vim.keymap.set("t", "<M-k", function() vim.cmd.wincmd("+") end)
+vim.keymap.set("t", "<M-j>", function() vim.cmd.wincmd("-") end)
+
+vim.keymap.set("t", "<M-m>", function() vim.cmd.wincmd("_") end)
+vim.keymap.set("t", "<M-n>", function() vim.cmd.wincmd("|") end)
+
+vim.keymap.set("t", "<M-h>", function() vim.cmd.wincmd("<") end)
+vim.keymap.set("t", "<M-l>", function() vim.cmd.wincmd(">") end)
+
+
+
 vim.keymap.set("n", "<C-d>", function() vim.cmd.LspZeroFormat() end)
 vim.keymap.set("n", "<leader>gg", function()
     vim.cmd.Lazy("load lazygit.nvim")

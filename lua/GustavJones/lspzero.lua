@@ -18,6 +18,7 @@ require('mason-lspconfig').setup({
 })
 
 local cmp = require('cmp')
+local cmp_format = require("lsp-zero").cmp_format()
 
 cmp.setup({
     mapping = cmp.mapping.preset.insert({
@@ -27,4 +28,11 @@ cmp.setup({
     completion = {
         completeopt = 'menu,menuone,noinsert'
     },
+    sources = {
+        { name = "nvim_lsp" },
+        { name = "luasnip" },
+    },
+    formatting = cmp_format
 })
+
+require("luasnip.loaders.from_vscode").lazy_load()
