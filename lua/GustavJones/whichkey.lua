@@ -11,6 +11,7 @@ wk.register({
             name = "telescope",
             c = "colorscheme",
             b = "buffers",
+            o = "nvim options",
             t = "telescope",
         },
         b = {
@@ -18,6 +19,7 @@ wk.register({
             d = "delete",
             h = "previous buffer",
             l = "next buffer",
+            i = "buffer info"
         }
     },
     ["<C-d>"] = "format document",

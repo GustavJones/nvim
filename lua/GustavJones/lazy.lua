@@ -21,7 +21,8 @@ require("lazy").setup({
             "nvim-tree/nvim-web-devicons",
             "MunifTanjim/nui.nvim",
             "3rd/image.nvim",
-        }
+        },
+        lazy = false,
     },
     {
         'nvim-treesitter/nvim-treesitter',
@@ -50,6 +51,22 @@ require("lazy").setup({
 
     { 'akinsho/bufferline.nvim',      version = "*", dependencies = 'nvim-tree/nvim-web-devicons' },
 
-    { 'akinsho/toggleterm.nvim',      version = "*", config = true }
+    { 'akinsho/toggleterm.nvim',      version = "*", config = true },
+
+    { 'stevearc/dressing.nvim', },
+
+    { 'lewis6991/gitsigns.nvim' },
+
+    { 'echasnovski/mini.nvim',        version = '*' },
+
+    {
+        "folke/trouble.nvim",
+        dependencies = { "nvim-tree/nvim-web-devicons" },
+        opts = {
+            -- your configuration comes here
+            -- or leave it empty to use the default settings
+            -- refer to the configuration section below
+        },
+    }
 
 })

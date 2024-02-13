@@ -40,18 +40,27 @@ vim.keymap.set("n", "<M-l>", function() vim.cmd.wincmd(">") end)
 
 vim.keymap.set("n", "<C-d>", function() vim.cmd.LspZeroFormat() end)
 vim.keymap.set("n", "<leader>gg", function()
+    vim.cmd.Lazy("load lazygit.nvim")
     vim.cmd.LazyGit()
 end)
 
 vim.keymap.set("n", "<leader>tc", function()
+    vim.cmd.Lazy("load telescope.nvim")
     vim.cmd.Telescope("colorscheme")
 end)
 
 vim.keymap.set("n", "<leader>tb", function()
+    vim.cmd.Lazy("load telescope.nvim")
     vim.cmd.Telescope("buffers")
 end)
 
+vim.keymap.set("n", "<leader>to", function()
+    vim.cmd.Lazy("load telescope.nvim")
+    vim.cmd.Telescope("vim_options")
+end)
+
 vim.keymap.set("n", "<leader>tt", function()
+    vim.cmd.Lazy("load telescope.nvim")
     vim.cmd.Telescope()
 end)
 
@@ -65,6 +74,10 @@ end)
 
 vim.keymap.set("n", "<leader>bl", function()
     vim.cmd.bnext()
+end)
+
+vim.keymap.set("n", "<leader>bi", function()
+    vim.cmd.LspInfo()
 end)
 
 vim.keymap.set("t", "<C-t>", function()

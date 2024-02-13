@@ -9,9 +9,9 @@ end)
 
 -- to learn how to use mason.nvim with lsp-zero
 -- read this: https://github.com/VonHeikemen/lsp-zero.nvim/blob/v3.x/doc/md/guide/integrate-with-mason-nvim.md
-require('mason').setup({ ensure_installed = { "clangd", "lua_ls", "stylua", "selene", "luacheck", "luaformatter" }, })
+require('mason').setup({ ensure_installed = { "clangd", "lua_ls", "stylua", "selene", "luacheck", "luaformatter", "cmake-language-server", "cmakelang" }, })
 require('mason-lspconfig').setup({
-    ensure_installed = { "clangd", "lua_ls" },
+    ensure_installed = { "clangd", "lua_ls", "cmake" },
     handlers = {
         lsp_zero.default_setup,
     },
