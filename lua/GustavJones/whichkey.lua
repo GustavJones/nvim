@@ -12,6 +12,7 @@ wk.register({
             c = "colorscheme",
             b = "buffers",
             o = "nvim options",
+            f = "find files",
             t = "telescope",
         },
         b = {
@@ -37,4 +38,10 @@ wk.register({
     ["<M-n>"] = "resize max horizontal",
 
     ["<C-t>"] = "toggle terminal",
+
+    ["q"] = {
+        name = "search highlighting",
+        [","] = "clear highlighting",
+        ["/"] = "show highlighting history",
+    },
 })

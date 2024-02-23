@@ -9,5 +9,4 @@ require("GustavJones.dressing")
 require("GustavJones.gitsigns")
 require("GustavJones.mini")
 
-
 vim.cmd.colorscheme("carbonfox")

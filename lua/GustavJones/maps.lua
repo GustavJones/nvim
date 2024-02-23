@@ -4,20 +4,20 @@ vim.opt.timeoutlen = 150
 
 vim.opt.number = true
 vim.opt.relativenumber = true
-vim.opt.tabstop = 4
-vim.opt.softtabstop = 4
-vim.opt.shiftwidth = 4
+vim.opt.tabstop = 2
+vim.opt.softtabstop = 2
+vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 
 vim.opt.smartindent = true
 
 vim.keymap.set("n", "<leader>e", function()
-    vim.cmd.Neotree("toggle")
+  vim.cmd.Neotree("toggle")
 end)
 
 local Savefunc = function()
-    vim.cmd.write()
-    vim.cmd.stopinsert()
+  vim.cmd.write()
+  vim.cmd.stopinsert()
 end
 
 vim.keymap.set("n", "<C-h>", function() vim.cmd.wincmd("h") end)
@@ -56,50 +56,74 @@ vim.keymap.set("t", "<M-l>", function() vim.cmd.wincmd(">") end)
 
 vim.keymap.set("n", "<C-d>", function() vim.cmd.LspZeroFormat() end)
 vim.keymap.set("n", "<leader>gg", function()
-    vim.cmd.Lazy("load lazygit.nvim")
-    vim.cmd.LazyGit()
+  vim.cmd.Lazy("load lazygit.nvim")
+  vim.cmd.LazyGit()
 end)
 
 vim.keymap.set("n", "<leader>tc", function()
-    vim.cmd.Lazy("load telescope.nvim")
-    vim.cmd.Telescope("colorscheme")
+  vim.cmd.Lazy("load telescope.nvim")
+  vim.cmd.Telescope("colorscheme")
 end)
 
 vim.keymap.set("n", "<leader>tb", function()
-    vim.cmd.Lazy("load telescope.nvim")
-    vim.cmd.Telescope("buffers")
+  vim.cmd.Lazy("load telescope.nvim")
+  vim.cmd.Telescope("buffers")
 end)
 
 vim.keymap.set("n", "<leader>to", function()
-    vim.cmd.Lazy("load telescope.nvim")
-    vim.cmd.Telescope("vim_options")
+  vim.cmd.Lazy("load telescope.nvim")
+  vim.cmd.Telescope("vim_options")
+end)
+
+vim.keymap.set("n", "<leader>tf", function()
+  vim.cmd.Lazy("load telescope.nvim")
+  vim.cmd.Telescope("find_files")
 end)
 
 vim.keymap.set("n", "<leader>tt", function()
-    vim.cmd.Lazy("load telescope.nvim")
-    vim.cmd.Telescope()
+  vim.cmd.Lazy("load telescope.nvim")
+  vim.cmd.Telescope()
 end)
 
 vim.keymap.set("n", "<leader>bd", function()
-    vim.cmd.bdelete()
+  vim.cmd.BufferLinePickClose()
+  --vim.cmd("bdelete!")
 end)
 
 vim.keymap.set("n", "<leader>bh", function()
-    vim.cmd.bprevious()
+  vim.cmd.bprevious()
 end)
 
 vim.keymap.set("n", "<leader>bl", function()
-    vim.cmd.bnext()
+  vim.cmd.bnext()
 end)
 
 vim.keymap.set("n", "<leader>bi", function()
-    vim.cmd.LspInfo()
+  vim.cmd.LspInfo()
+end)
+
+vim.keymap.set("n", "q,", function()
+  vim.cmd.let("@/ = ''")
 end)
 
 vim.keymap.set("t", "<C-t>", function()
-    vim.cmd.ToggleTerm()
+  vim.cmd.ToggleTerm()
 end)
 
 vim.keymap.set("n", "<C-t>", function()
-    vim.cmd.ToggleTerm("direction=horizontal")
+  vim.cmd.ToggleTerm("direction=horizontal")
+end)
+
+vim.keymap.set("n", "<leader>dd", function()
+  local dapui = require("dapui")
+
+  dapui.toggle()
+end)
+
+vim.keymap.set("n", "<leader>dt", function()
+  vim.cmd.DapToggleBreakpoint()
+end)
+
+vim.keymap.set("n", "<leader>dc", function()
+  vim.cmd.DapContinue()
 end)
