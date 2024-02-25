@@ -10,6 +10,10 @@ vim.opt.tabstop = 2
 vim.opt.softtabstop = 2
 vim.opt.expandtab = true
 
+vim.opt.clipboard:append("unnamedplus")
+vim.opt.swapfile = false
+vim.opt.termguicolors = true
+
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
@@ -17,6 +21,11 @@ vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Goto left window", noremap = tr
 vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Goto bottom window", noremap = true, silent = true })
 vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Goto top window", noremap = true, silent = true })
 vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Goto right window", noremap = true, silent = true })
+
+vim.keymap.set("n", "<C-Left>", "<C-w><", { desc = "Resize Left", noremap = true, silent = true })
+vim.keymap.set("n", "<C-Down>", "<C-w>-", { desc = "Resize Down", noremap = true, silent = true })
+vim.keymap.set("n", "<C-Up>", "<C-w>+", { desc = "Resize Up", noremap = true, silent = true })
+vim.keymap.set("n", "<C-Right>", "<C-w>>", { desc = "Resize Right", noremap = true, silent = true })
 
 vim.keymap.set("n", "<S-h>", ":bprevious<CR>", { desc = "Goto left buffer", noremap = true, silent = true })
 vim.keymap.set("n", "<S-l>", ":bnext<CR>", { desc = "Goto right buffer", noremap = true, silent = true })
