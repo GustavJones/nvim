@@ -17,6 +17,8 @@ return {
 				"prettier", -- prettier formatter
 				"stylua", -- lua formatter
 				"clang-format",
+				"cmakelint",
+				"cpplint",
 			},
 		})
 

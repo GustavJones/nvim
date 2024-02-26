@@ -49,7 +49,7 @@ return {
 		end, { desc = "Step Out", noremap = true, silent = true })
 
 		mason_dap.setup({
-			ensure_installed = { "stylua", "cpptools" },
+			ensure_installed = { "cpptools" },
 			automatic_installation = true,
 			handlers = {},
 		})
