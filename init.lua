@@ -11,7 +11,7 @@ vim.opt.softtabstop = 2
 vim.opt.expandtab = true
 
 vim.opt.clipboard:append("unnamedplus")
-vim.opt.swapfile = false
+-- vim.opt.swapfile = false
 vim.opt.termguicolors = true
 
 vim.g.mapleader = " "
