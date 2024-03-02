@@ -49,7 +49,7 @@ return {
 		end, { desc = "Step Out", noremap = true, silent = true })
 
 		mason_dap.setup({
-			ensure_installed = { "cpptools" },
+			ensure_installed = { "cpptools", "java_language_server" },
 			automatic_installation = true,
 			handlers = {},
 		})

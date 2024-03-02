@@ -19,6 +19,7 @@ return {
 				"clang-format",
 				"cmakelint",
 				"cpplint",
+				"google-java-format",
 			},
 		})
 
@@ -42,6 +43,7 @@ return {
 				}), -- js/ts formatter
 				formatting.stylua, -- lua formatter
 				formatting.clang_format,
+				formatting.google_java_format,
 			},
 			-- configure format on save
 			on_attach = function(current_client, bufnr)

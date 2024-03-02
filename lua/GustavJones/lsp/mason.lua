@@ -17,6 +17,7 @@ return {
 				"html",
 				"clangd",
 				"cmake",
+				"java_language_server",
 			},
 			automatic_installation = true,
 		})
