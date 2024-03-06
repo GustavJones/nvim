@@ -49,7 +49,7 @@ return {
 		end, { desc = "Step Out", noremap = true, silent = true })
 
 		mason_dap.setup({
-			ensure_installed = { "cpptools", "java_language_server" },
+			ensure_installed = { "cpptools", "java_language_server", "kotlin-debug-adapter" },
 			automatic_installation = true,
 			handlers = {},
 		})

@@ -18,6 +18,7 @@ return {
 				"clangd",
 				"cmake",
 				"java_language_server",
+				"kotlin_language_server",
 			},
 			automatic_installation = true,
 		})
