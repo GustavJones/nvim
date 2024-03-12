@@ -49,7 +49,7 @@ return {
 		end, { desc = "Step Out", noremap = true, silent = true })
 
 		vim.keymap.set("n", "<leader>dl", function()
-			dap.step_out()
+			dap.run_last()
 		end, { desc = "Run Last Debug session", noremap = true, silent = true })
 
 		vim.keymap.set("n", "<leader>de", function()

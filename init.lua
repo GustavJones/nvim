@@ -35,6 +35,9 @@ vim.keymap.set("n", "<leader>bd", ":BufferLinePickClose<CR>", { desc = "Close bu
 vim.keymap.set("n", "<leader>bl", ":bnext<CR>", { desc = "Goto Right buffer", noremap = true, silent = true })
 vim.keymap.set("n", "<leader>bh", ":bprevious<CR>", { desc = "Goto Left buffer", noremap = true, silent = true })
 
+-- Search
+vim.keymap.set("n", "<leader>/", ":let @/ = ''", { desc = "Goto Left buffer", noremap = true, silent = true })
+
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
 	vim.fn.system({
