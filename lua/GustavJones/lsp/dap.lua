@@ -48,6 +48,14 @@ return {
 			dap.step_out()
 		end, { desc = "Step Out", noremap = true, silent = true })
 
+		vim.keymap.set("n", "<leader>dl", function()
+			dap.step_out()
+		end, { desc = "Run Last Debug session", noremap = true, silent = true })
+
+		vim.keymap.set("n", "<leader>de", function()
+			dap.terminate()
+		end, { desc = "Exit Debug session", noremap = true, silent = true })
+
 		mason_dap.setup({
 			ensure_installed = { "cpptools", "java_language_server", "kotlin-debug-adapter" },
 			automatic_installation = true,
