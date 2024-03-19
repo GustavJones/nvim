@@ -4,6 +4,7 @@ return {
 	dependencies = {
 		"jay-babu/mason-nvim-dap.nvim",
 		"mfussenegger/nvim-dap",
+		"nvim-neotest/nvim-nio",
 	},
 	config = function()
 		local dapui = require("dapui")

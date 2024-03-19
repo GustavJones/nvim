@@ -66,9 +66,22 @@ return {
 			on_attach = on_attach,
 		})
 
-		lspconfig["java_language_server"].setup({
+		-- lspconfig["java_language_server"].setup({
+		-- 	capabilities = capabilities,
+		-- 	on_attach = on_attach,
+		--
+		-- 	cmd = {
+		-- 		"java-language-server",
+		-- 	},
+		-- })
+
+		lspconfig["jdtls"].setup({
 			capabilities = capabilities,
 			on_attach = on_attach,
+
+			filetypes = { "java", "kotlin" },
+
+			cmd = { "jdtls" },
 		})
 
 		lspconfig["kotlin_language_server"].setup({
