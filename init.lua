@@ -38,7 +38,8 @@ vim.keymap.set("n", "<leader>bh", ":bprevious<CR>", { desc = "Goto Left buffer",
 -- Search
 vim.keymap.set("n", "<leader>/", ":let @/ = ''<CR>", { desc = "Clear Search Buffer", noremap = true, silent = true })
 
-vim.keymap.set("t", "<ESC>", "<C-\\><C-n>", { desc = "Exit Terminal Mode", noremap = true, silent = true })
+vim.keymap.set("t", "<ESC>", "<C-\\><C-n>", { desc = "Exit Terminal Mode", noremap = false, silent = true })
+vim.keymap.set("i", "jk", "<ESC>", { desc = "Escape", noremap = false, silent = true })
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then

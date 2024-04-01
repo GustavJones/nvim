@@ -66,14 +66,23 @@ return {
 			on_attach = on_attach,
 		})
 
-		-- lspconfig["java_language_server"].setup({
-		-- 	capabilities = capabilities,
-		-- 	on_attach = on_attach,
-		--
-		-- 	cmd = {
-		-- 		"java-language-server",
-		-- 	},
-		-- })
+		lspconfig["emmet_language_server"].setup({
+			capabilities = capabilities,
+			on_attach = on_attach,
+
+			-- root_dir = lspconfig.util.root_pattern("index.html"),
+		})
+
+		lspconfig["html"].setup({
+			capabilities = capabilities,
+			on_attach = on_attach,
+			-- root_dir = lspconfig.util.root_pattern("index.html"),
+		})
+
+		lspconfig["jedi_language_server"].setup({
+			capabilities = capabilities,
+			on_attach = on_attach,
+		})
 
 		lspconfig["jdtls"].setup({
 			capabilities = capabilities,

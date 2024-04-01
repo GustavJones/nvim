@@ -20,6 +20,7 @@ return {
 				"cmakelint",
 				"cpplint",
 				"google-java-format",
+				"black",
 			},
 		})
 
@@ -44,6 +45,7 @@ return {
 				formatting.stylua, -- lua formatter
 				formatting.clang_format,
 				formatting.google_java_format,
+				formatting.black,
 			},
 			-- configure format on save
 			on_attach = function(current_client, bufnr)

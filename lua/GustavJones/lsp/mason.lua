@@ -13,13 +13,13 @@ return {
 		mason_lspconfig.setup({
 			ensure_installed = {
 				"lua_ls",
-				"emmet_ls",
+				"emmet_language_server",
 				"html",
 				"clangd",
 				"cmake",
-				"java_language_server",
 				"jdtls",
 				"kotlin_language_server",
+				"jedi_language_server",
 			},
 			automatic_installation = true,
 		})
