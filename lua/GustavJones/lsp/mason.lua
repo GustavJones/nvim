@@ -20,6 +20,7 @@ return {
 				"jdtls",
 				"kotlin_language_server",
 				"jedi_language_server",
+				"asm_lsp",
 			},
 			automatic_installation = true,
 		})

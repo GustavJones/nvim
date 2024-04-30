@@ -56,6 +56,12 @@ return {
 
 		local capabilities = cmp_nvim_lsp.default_capabilities()
 
+		lspconfig["asm_lsp"].setup({
+			capabilities = capabilities,
+			on_attach = on_attach,
+			root_dir = lspconfig.util.root_pattern("*.asm", ".git"),
+		})
+
 		lspconfig["clangd"].setup({
 			capabilities = capabilities,
 			on_attach = on_attach,
