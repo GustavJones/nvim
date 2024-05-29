@@ -70,6 +70,7 @@ return {
 		lspconfig["cmake"].setup({
 			capabilities = capabilities,
 			on_attach = on_attach,
+			-- root_dir = lspconfig.util.root_pattern("CMakeLists.txt", "cmake")
 		})
 
 		lspconfig["emmet_language_server"].setup({
