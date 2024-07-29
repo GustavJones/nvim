@@ -18,6 +18,7 @@ return {
 				"clangd",
 				"cmake",
 				"jdtls",
+				"marksman",
 				"kotlin_language_server",
 				"jedi_language_server",
 				"asm_lsp",
