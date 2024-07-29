@@ -22,6 +22,7 @@ return {
 				"kotlin_language_server",
 				"jedi_language_server",
 				"asm_lsp",
+				"pyright",
 			},
 			automatic_installation = true,
 		})
