@@ -110,6 +110,12 @@ return {
 			on_attach = on_attach,
 		})
 
+		lspconfig["pasls"].setup({
+			capabilities = capabilities,
+			on_attach = on_attach,
+			root_dir = lspconfig.util.root_pattern("*.dpr", "*.dproj"),
+		})
+
 		lspconfig["kotlin_language_server"].setup({
 			capabilities = capabilities,
 			on_attach = on_attach,
