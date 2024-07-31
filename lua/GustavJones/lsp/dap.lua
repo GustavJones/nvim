@@ -37,6 +37,29 @@ return {
 			dap.continue()
 		end, { desc = "Continue", noremap = true, silent = true })
 
+		vim.keymap.set("n", "<leader>da", function()
+			local arguments = vim.fn.input("Arguments: ", "", "file")
+
+			function SplitString(inputstr, sep)
+				if sep == nil then
+					sep = "%s"
+				end
+				local t = {}
+				for str in string.gmatch(inputstr, "([^" .. sep .. "]+)") do
+					table.insert(t, str)
+				end
+				return t
+			end
+
+			for ft, configs in pairs(dap.configurations) do
+				for _, config in ipairs(configs) do
+					config.args = SplitString(arguments, " ")
+				end
+			end
+
+			dap.continue()
+		end, { desc = "Continue with Arguments", noremap = true, silent = true })
+
 		vim.keymap.set("n", "<leader>do", function()
 			dap.step_over()
 		end, { desc = "Step Over", noremap = true, silent = true })
