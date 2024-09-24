@@ -9,7 +9,9 @@ return {
 		vim.o.foldenable = true
 
 		vim.keymap.set("n", "<leader>co", "zo", { noremap = true, silent = true, desc = "Open fold" })
+		vim.keymap.set("n", "<leader>cO", "zR", { noremap = true, silent = true, desc = "Open all folds" })
 		vim.keymap.set("n", "<leader>cp", "zc", { noremap = true, silent = true, desc = "Close fold" })
+		vim.keymap.set("n", "<leader>cP", "zM", { noremap = true, silent = true, desc = "Close all folds" })
 
 		-- Option: treesitter as a main provider instead
 		-- (Note: the `nvim-treesitter` plugin is *not* needed.)
