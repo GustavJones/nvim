@@ -72,7 +72,13 @@ return {
 			on_attach = on_attach,
 		})
 
-		lspconfig["cmake"].setup({
+		-- lspconfig["cmake"].setup({
+		-- 	capabilities = capabilities,
+		-- 	on_attach = on_attach,
+		-- 	-- root_dir = lspconfig.util.root_pattern("CMakeLists.txt", "cmake")
+		-- })
+
+		lspconfig["neocmake"].setup({
 			capabilities = capabilities,
 			on_attach = on_attach,
 			-- root_dir = lspconfig.util.root_pattern("CMakeLists.txt", "cmake")

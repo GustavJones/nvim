@@ -17,6 +17,7 @@ return {
 				"html",
 				"clangd",
 				"cmake",
+				"neocmake",
 				"jdtls",
 				"marksman",
 				"kotlin_language_server",
