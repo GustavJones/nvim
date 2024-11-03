@@ -24,6 +24,7 @@ return {
 				"jedi_language_server",
 				"asm_lsp",
 				"pyright",
+				"sqlls",
 			},
 			automatic_installation = true,
 		})
