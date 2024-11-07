@@ -96,6 +96,12 @@ return {
 			-- root_dir = lspconfig.util.root_pattern("index.html"),
 		})
 
+		lspconfig["cssls"].setup({
+			capabilities = capabilities,
+			on_attach = on_attach,
+			-- root_dir = lspconfig.util.root_pattern("index.html"),
+		})
+
 		lspconfig["html"].setup({
 			capabilities = capabilities,
 			on_attach = on_attach,

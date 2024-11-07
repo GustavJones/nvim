@@ -15,6 +15,7 @@ return {
 				"lua_ls",
 				"emmet_language_server",
 				"html",
+				"cssls",
 				"clangd",
 				"cmake",
 				"neocmake",
