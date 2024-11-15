@@ -38,26 +38,30 @@ return {
 		end, { desc = "Continue", noremap = true, silent = true })
 
 		vim.keymap.set("n", "<leader>da", function()
-			local arguments = vim.fn.input("Arguments: ", "", "file")
+			-- local arguments = vim.fn.input("Arguments: ", "", "file")
+			-- local nio = require("nio")
+			-- local arguments = nio.ui.input({ prompt = "Arguments: " })
 
-			function SplitString(inputstr, sep)
-				if sep == nil then
-					sep = "%s"
+			vim.ui.input({ prompt = "Arguments: " }, function(arguments)
+				function SplitString(inputstr, sep)
+					if sep == nil then
+						sep = "%s"
+					end
+					local t = {}
+					for str in string.gmatch(inputstr, "([^" .. sep .. "]+)") do
+						table.insert(t, str)
+					end
+					return t
 				end
-				local t = {}
-				for str in string.gmatch(inputstr, "([^" .. sep .. "]+)") do
-					table.insert(t, str)
-				end
-				return t
-			end
 
-			for ft, configs in pairs(dap.configurations) do
-				for _, config in ipairs(configs) do
-					config.args = SplitString(arguments, " ")
+				for ft, configs in pairs(dap.configurations) do
+					for _, config in ipairs(configs) do
+						config.args = SplitString(arguments, " ")
+					end
 				end
-			end
 
-			dap.continue()
+				dap.continue()
+			end)
 		end, { desc = "Continue with Arguments", noremap = true, silent = true })
 
 		vim.keymap.set("n", "<leader>do", function()
