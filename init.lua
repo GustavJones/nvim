@@ -31,7 +31,8 @@ vim.keymap.set("n", "<S-h>", ":bprevious<CR>", { desc = "Goto left buffer", nore
 vim.keymap.set("n", "<S-l>", ":bnext<CR>", { desc = "Goto right buffer", noremap = true, silent = true })
 
 -- Buffers
-vim.keymap.set("n", "<leader>bd", ":BufferLinePickClose<CR>", { desc = "Close buffer", noremap = true, silent = true })
+vim.keymap.set("n", "<leader>bd", ":BufferLinePickClose<CR>", { desc = "Close Bufferline buffer", noremap = true, silent = true })
+vim.keymap.set("n", "<leader>bc", ":bdelete<CR>", { desc = "Close current buffer", noremap = true, silent = true })
 vim.keymap.set("n", "<leader>bl", ":bnext<CR>", { desc = "Goto Right buffer", noremap = true, silent = true })
 vim.keymap.set("n", "<leader>bh", ":bprevious<CR>", { desc = "Goto Left buffer", noremap = true, silent = true })
 
