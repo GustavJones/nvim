@@ -26,6 +26,7 @@ return {
 				"asm_lsp",
 				"pyright",
 				"sqlls",
+				"taplo",
 			},
 			automatic_installation = true,
 		})

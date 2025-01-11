@@ -109,6 +109,11 @@ return {
 			-- root_dir = lspconfig.util.root_pattern("index.html"),
 		})
 
+    lspconfig["taplo"].setup({
+			capabilities = capabilities,
+			on_attach = on_attach,
+		})
+
 		lspconfig["jedi_language_server"].setup({
 			capabilities = capabilities,
 			on_attach = on_attach,
