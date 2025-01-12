@@ -28,7 +28,7 @@ return {
 		local keymap = vim.keymap
 
 		opts.desc = "Format Document"
-		keymap.set("n", "cf", function()
+		keymap.set("n", "<leader>cf", function()
 			vim.lsp.buf.format({
 				filter = function(client)
 					--  only use null-ls for formatting instead of lsp server
