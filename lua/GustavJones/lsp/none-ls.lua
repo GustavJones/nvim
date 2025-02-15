@@ -30,10 +30,10 @@ return {
 		opts.desc = "Format Document"
 		keymap.set("n", "<leader>cf", function()
 			vim.lsp.buf.format({
-				filter = function(client)
-					--  only use null-ls for formatting instead of lsp server
-					return client.name == "null-ls"
-				end,
+				-- filter = function(client)
+				-- 	--  only use null-ls for formatting instead of lsp server
+				-- 	return client.name == "null-ls"
+				-- end,
 			})
 		end, opts) -- show definition, references
 
