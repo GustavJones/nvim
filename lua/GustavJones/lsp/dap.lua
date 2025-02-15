@@ -37,6 +37,11 @@ return {
 			dap.continue()
 		end, { desc = "Continue", noremap = true, silent = true })
 
+    vim.keymap.set("n", "<leader>dl", function()
+			dap.run_last()
+		end, { desc = "Run Last Configuration", noremap = true, silent = true })
+
+
 		vim.keymap.set("n", "<leader>da", function()
 			-- local arguments = vim.fn.input("Arguments: ", "", "file")
 			-- local nio = require("nio")
@@ -63,6 +68,19 @@ return {
 				dap.continue()
 			end)
 		end, { desc = "Continue with Arguments", noremap = true, silent = true })
+
+    vim.keymap.set("n", "<leader>dwa", function()
+			dapui.elements.watches.add()
+		end, { desc = "Add Watch Expression", noremap = true, silent = true })
+
+    vim.keymap.set("n", "<leader>dwd", function()
+			dapui.elements.watches.remove()
+		end, { desc = "Remove Watch Expression", noremap = true, silent = true })
+
+
+    vim.keymap.set("n", "<leader>dp", function()
+			dap.step_back()
+		end, { desc = "Step Back", noremap = true, silent = true })
 
 		vim.keymap.set("n", "<leader>do", function()
 			dap.step_over()

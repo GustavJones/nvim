@@ -11,6 +11,7 @@ return {
 			["<leader>r"] = { name = "Rename" },
 			["<leader>g"] = { name = "Git" },
 			["<leader>d"] = { name = "Debugging" },
+			["<leader>dw"] = { name = "Debugging Watches" },
 			["<leader>b"] = { name = "Buffers" },
 			["<leader>"] = { name = "Leader commands" },
 			["["] = { name = "Snippet jump to start" },
