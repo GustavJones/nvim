@@ -103,7 +103,7 @@ return {
 		end, { desc = "Exit Debug session", noremap = true, silent = true })
 
 		mason_dap.setup({
-			ensure_installed = { "cppdbg", "javadbg", "kotlin", "python" },
+			ensure_installed = { "cppdbg", "javadbg", "kotlin", "python", "coreclr" },
 			automatic_installation = true,
 			handlers = {},
 		})
