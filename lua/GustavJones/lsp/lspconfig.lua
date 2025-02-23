@@ -1,7 +1,7 @@
 return {
 	"neovim/nvim-lspconfig",
 	event = { "BufReadPre", "BufNewFile", "VeryLazy" },
-  lazy = true,
+	lazy = true,
 	dependencies = {
 		"hrsh7th/cmp-nvim-lsp",
 		{ "antosha417/nvim-lsp-file-operations", config = true },
@@ -9,6 +9,29 @@ return {
 	config = function()
 		local lspconfig = require("lspconfig")
 		local cmp_nvim_lsp = require("cmp_nvim_lsp")
+		local mason_lspconfig = require("mason-lspconfig")
+
+		mason_lspconfig.setup({
+			ensure_installed = {
+				"lua_ls",
+				"emmet_language_server",
+				"html",
+				"cssls",
+				"clangd",
+				"cmake",
+				"neocmake",
+				"jdtls",
+				"marksman",
+				"kotlin_language_server",
+				"jedi_language_server",
+				"asm_lsp",
+				"pyright",
+				"sqlls",
+				"taplo",
+				"csharp_ls",
+			},
+			automatic_installation = true,
+		})
 
 		local opts = { noremap = true, silent = true }
 
@@ -33,8 +56,8 @@ return {
 			opts.desc = "See available code actions"
 			keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts) -- see available code actions, in visual mode will apply to selection
 
-      opts.desc = "See signature help"
-      keymap.set({ "n", "v" }, "<leader>cs", vim.lsp.buf.signature_help, opts);
+			opts.desc = "See signature help"
+			keymap.set({ "n", "v" }, "<leader>cs", vim.lsp.buf.signature_help, opts)
 
 			opts.desc = "Smart rename"
 			keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts) -- smart rename
@@ -65,21 +88,70 @@ return {
 			lineFoldingOnly = true,
 		}
 
-		lspconfig["sqlls"].setup({
-			capabilities = capabilities,
-			on_attach = on_attach,
+		mason_lspconfig.setup_handlers({
+			function(server_name)
+				lspconfig[server_name].setup({
+					capabilities = capabilities,
+					on_attach = on_attach,
+				})
+			end,
+
+			["asm_lsp"] = function()
+				lspconfig["asm_lsp"].setup({
+					capabilities = capabilities,
+					on_attach = on_attach,
+					root_dir = lspconfig.util.root_pattern("*.asm", ".git"),
+				})
+			end,
+			["jdtls"] = function()
+				lspconfig["jdtls"].setup({
+					capabilities = capabilities,
+					on_attach = on_attach,
+
+					filetypes = { "java", "kotlin" },
+
+					cmd = { "jdtls" },
+				})
+			end,
+			["pasls"] = function()
+				lspconfig["pasls"].setup({
+					capabilities = capabilities,
+					on_attach = on_attach,
+					root_dir = lspconfig.util.root_pattern("*.dpr", "*.dproj"),
+				})
+			end,
+			["lua_ls"] = function()
+				lspconfig["lua_ls"].setup({
+					capabilities = capabilities,
+					on_attach = on_attach,
+					settings = { -- custom settings for lua
+						Lua = {
+							-- make the language server recognize "vim" global
+							diagnostics = {
+								globals = { "vim" },
+							},
+							workspace = {
+								-- make language server aware of runtime files
+								library = {
+									[vim.fn.expand("$VIMRUNTIME/lua")] = true,
+									[vim.fn.stdpath("config") .. "/lua"] = true,
+								},
+							},
+						},
+					},
+				})
+			end,
 		})
 
-		lspconfig["asm_lsp"].setup({
-			capabilities = capabilities,
-			on_attach = on_attach,
-			root_dir = lspconfig.util.root_pattern("*.asm", ".git"),
-		})
+		-- lspconfig["sqlls"].setup({
+		-- 	capabilities = capabilities,
+		-- 	on_attach = on_attach,
+		-- })
 
-		lspconfig["clangd"].setup({
-			capabilities = capabilities,
-			on_attach = on_attach,
-		})
+		-- lspconfig["clangd"].setup({
+		-- 	capabilities = capabilities,
+		-- 	on_attach = on_attach,
+		-- })
 
 		-- lspconfig["cmake"].setup({
 		-- 	capabilities = capabilities,
@@ -87,89 +159,54 @@ return {
 		-- 	-- root_dir = lspconfig.util.root_pattern("CMakeLists.txt", "cmake")
 		-- })
 
-		lspconfig["neocmake"].setup({
-			capabilities = capabilities,
-			on_attach = on_attach,
-			-- root_dir = lspconfig.util.root_pattern("CMakeLists.txt", "cmake")
-		})
+		-- lspconfig["neocmake"].setup({
+		-- 	capabilities = capabilities,
+		-- 	on_attach = on_attach,
+		-- 	-- root_dir = lspconfig.util.root_pattern("CMakeLists.txt", "cmake")
+		-- })
 
-		lspconfig["emmet_language_server"].setup({
-			capabilities = capabilities,
-			on_attach = on_attach,
+		-- lspconfig["emmet_language_server"].setup({
+		-- 	capabilities = capabilities,
+		-- 	on_attach = on_attach,
+		--
+		-- 	-- root_dir = lspconfig.util.root_pattern("index.html"),
+		-- })
 
-			-- root_dir = lspconfig.util.root_pattern("index.html"),
-		})
+		-- lspconfig["cssls"].setup({
+		-- 	capabilities = capabilities,
+		-- 	on_attach = on_attach,
+		-- 	-- root_dir = lspconfig.util.root_pattern("index.html"),
+		-- })
 
-		lspconfig["cssls"].setup({
-			capabilities = capabilities,
-			on_attach = on_attach,
-			-- root_dir = lspconfig.util.root_pattern("index.html"),
-		})
+		-- lspconfig["html"].setup({
+		-- 	capabilities = capabilities,
+		-- 	on_attach = on_attach,
+		-- 	-- root_dir = lspconfig.util.root_pattern("index.html"),
+		-- })
 
-		lspconfig["html"].setup({
-			capabilities = capabilities,
-			on_attach = on_attach,
-			-- root_dir = lspconfig.util.root_pattern("index.html"),
-		})
+		-- lspconfig["taplo"].setup({
+		-- 	capabilities = capabilities,
+		-- 	on_attach = on_attach,
+		-- })
 
-    lspconfig["taplo"].setup({
-			capabilities = capabilities,
-			on_attach = on_attach,
-		})
+		-- lspconfig["jedi_language_server"].setup({
+		-- 	capabilities = capabilities,
+		-- 	on_attach = on_attach,
+		-- })
 
-		lspconfig["jedi_language_server"].setup({
-			capabilities = capabilities,
-			on_attach = on_attach,
-		})
+		-- lspconfig["pyright"].setup({
+		-- 	capabilities = capabilities,
+		-- 	on_attach = on_attach,
+		-- })
 
-		lspconfig["pyright"].setup({
-			capabilities = capabilities,
-			on_attach = on_attach,
-		})
+		-- lspconfig["marksman"].setup({
+		-- 	capabilities = capabilities,
+		-- 	on_attach = on_attach,
+		-- })
 
-		lspconfig["jdtls"].setup({
-			capabilities = capabilities,
-			on_attach = on_attach,
-
-			filetypes = { "java", "kotlin" },
-
-			cmd = { "jdtls" },
-		})
-
-		lspconfig["marksman"].setup({
-			capabilities = capabilities,
-			on_attach = on_attach,
-		})
-
-		lspconfig["pasls"].setup({
-			capabilities = capabilities,
-			on_attach = on_attach,
-			root_dir = lspconfig.util.root_pattern("*.dpr", "*.dproj"),
-		})
-
-		lspconfig["kotlin_language_server"].setup({
-			capabilities = capabilities,
-			on_attach = on_attach,
-		})
-
-		lspconfig["lua_ls"].setup({
-			capabilities = capabilities,
-			on_attach = on_attach,
-			settings = { -- custom settings for lua
-				Lua = {
-					-- make the language server recognize "vim" global
-					diagnostics = {
-						globals = { "vim" },
-					},
-					workspace = {
-						-- make language server aware of runtime files
-						library = {
-							[vim.fn.expand("$VIMRUNTIME/lua")] = true,
-							[vim.fn.stdpath("config") .. "/lua"] = true,
-						},
-					},
-				},
-			},
-		})
+		-- lspconfig["kotlin_language_server"].setup({
+		-- 	capabilities = capabilities,
+		-- 	on_attach = on_attach,
+		-- })
 	end,
 }
