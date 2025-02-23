@@ -113,13 +113,13 @@ return {
 					cmd = { "jdtls" },
 				})
 			end,
-			["pasls"] = function()
-				lspconfig["pasls"].setup({
-					capabilities = capabilities,
-					on_attach = on_attach,
-					root_dir = lspconfig.util.root_pattern("*.dpr", "*.dproj"),
-				})
-			end,
+			-- ["pasls"] = function()
+			-- 	lspconfig["pasls"].setup({
+			-- 		capabilities = capabilities,
+			-- 		on_attach = on_attach,
+			-- 		root_dir = lspconfig.util.root_pattern("*.dpr", "*.dproj"),
+			-- 	})
+			-- end,
 			["lua_ls"] = function()
 				lspconfig["lua_ls"].setup({
 					capabilities = capabilities,
