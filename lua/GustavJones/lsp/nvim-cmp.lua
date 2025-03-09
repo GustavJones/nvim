@@ -15,6 +15,27 @@ return {
 
 		local luasnip = require("luasnip")
 
+		vim.keymap.set("v", "<right>", function()
+			if luasnip.locally_jumpable(1) then
+				luasnip.jump(1)
+			end
+		end, { noremap = true, silent = true })
+		vim.keymap.set("i", "<right>", function()
+			if luasnip.locally_jumpable(1) then
+				luasnip.jump(1)
+			end
+		end, { noremap = true, silent = true })
+		vim.keymap.set("v", "<left>", function()
+			if luasnip.locally_jumpable(-1) then
+				luasnip.jump(-1)
+			end
+		end, { noremap = true, silent = true })
+		vim.keymap.set("i", "<left>", function()
+			if luasnip.locally_jumpable(-1) then
+				luasnip.jump(-1)
+			end
+		end, { noremap = true, silent = true })
+
 		local lspkind = require("lspkind")
 
 		-- loads vscode style snippets from installed plugins (e.g. friendly-snippets)
@@ -36,7 +57,17 @@ return {
 				["<C-f>"] = cmp.mapping.scroll_docs(4),
 				["<C-Space>"] = cmp.mapping.complete(), -- show completion suggestions
 				["<C-e>"] = cmp.mapping.abort(), -- close completion window
-				["<CR>"] = cmp.mapping.confirm({ select = false }),
+				["<CR>"] = cmp.mapping(function(fallback)
+					if cmp.visible() then
+						if luasnip.expandable() then
+							luasnip.expand()
+						else
+							cmp.confirm({ select = true })
+						end
+					else
+						fallback()
+					end
+				end),
 			}),
 			preselect = "item",
 			-- sources for autocompletion
@@ -50,7 +81,7 @@ return {
 			-- configure lspkind for vs-code like pictograms in completion menu
 			formatting = {
 				format = lspkind.cmp_format({
-					maxwidth = 50,
+					maxwidth = 75,
 					ellipsis_char = "...",
 				}),
 			},
