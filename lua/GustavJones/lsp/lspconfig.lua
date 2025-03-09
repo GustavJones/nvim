@@ -29,6 +29,7 @@ return {
 				"sqlls",
 				"taplo",
 				"csharp_ls",
+				"tsserver",
 			},
 			automatic_installation = true,
 		})
