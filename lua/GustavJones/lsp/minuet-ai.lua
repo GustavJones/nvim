@@ -13,6 +13,9 @@ return {
 			-- of 512, serves as an good starting point to estimate your computing
 			-- power. Once you have a reliable estimate of your local computing power,
 			-- you should adjust the context window to a larger value.
+      cmp = {
+        enable_auto_complete = false,
+      },
 			context_window = 512,
 			provider_options = {
 				openai_fim_compatible = {
