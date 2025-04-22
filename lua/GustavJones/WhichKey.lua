@@ -5,21 +5,21 @@ return {
 	config = function()
 		local whichkey = require("which-key")
 
-		whichkey.register({
-			["<leader>t"] = { name = "Telescope" },
-			["<leader>c"] = { name = "Code" },
-			["<leader>r"] = { name = "Rename" },
-			["<leader>g"] = { name = "Git" },
-			["<leader>d"] = { name = "Debugging" },
-			["<leader>dw"] = { name = "Debugging Watches" },
-			["<leader>b"] = { name = "Buffers" },
-			["<leader>"] = { name = "Leader commands" },
-			["["] = { name = "Snippet jump to start" },
-			["]"] = { name = "Snippet jump to end" },
-			["K"] = { name = "Open information under cursor" },
-			["g"] = { name = "Goto" },
-			["d"] = { name = "Delete" },
-			["z"] = { name = "Folding" },
+		whichkey.add({
+			{ "<leader>", group = "Leader commands" },
+			{ "<leader>b", group = "Buffers" },
+			{ "<leader>c", group = "Code" },
+			{ "<leader>d", group = "Debugging" },
+			{ "<leader>dw", group = "Debugging Watches" },
+			{ "<leader>g", group = "Git" },
+			{ "<leader>r", group = "Rename" },
+			{ "<leader>t", group = "Telescope" },
+			{ "K", group = "Open information under cursor" },
+			{ "[", group = "Snippet jump to start" },
+			{ "]", group = "Snippet jump to end" },
+			{ "d", group = "Delete" },
+			{ "g", group = "Goto" },
+			{ "z", group = "Folding" },
 		})
 	end,
 }
