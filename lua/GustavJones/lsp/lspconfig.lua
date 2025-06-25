@@ -32,6 +32,7 @@ return {
 				"ts_ls",
 			},
 			automatic_installation = true,
+			automatic_enable = false,
 		})
 
 		local opts = { noremap = true, silent = true }
@@ -89,14 +90,7 @@ return {
 			lineFoldingOnly = true,
 		}
 
-		mason_lspconfig.setup_handlers({
-			function(server_name)
-				lspconfig[server_name].setup({
-					capabilities = capabilities,
-					on_attach = on_attach,
-				})
-			end,
-
+		local custom_lsp_setups = {
 			["asm_lsp"] = function()
 				lspconfig["asm_lsp"].setup({
 					capabilities = capabilities,
@@ -142,72 +136,74 @@ return {
 					},
 				})
 			end,
-		})
+		}
 
-		-- lspconfig["sqlls"].setup({
-		-- 	capabilities = capabilities,
-		-- 	on_attach = on_attach,
-		-- })
+		local installed_lsp_servers = mason_lspconfig.get_installed_servers()
 
-		-- lspconfig["clangd"].setup({
-		-- 	capabilities = capabilities,
-		-- 	on_attach = on_attach,
-		-- })
+		for i = 1, #installed_lsp_servers do
+			if custom_lsp_setups[installed_lsp_servers[i]] then
+				custom_lsp_setups[installed_lsp_servers[i]]()
+			else
+				lspconfig[installed_lsp_servers[i]].setup({
+					capabilities = capabilities,
+					on_attach = on_attach,
+				})
+			end
+		end
 
-		-- lspconfig["cmake"].setup({
-		-- 	capabilities = capabilities,
-		-- 	on_attach = on_attach,
-		-- 	-- root_dir = lspconfig.util.root_pattern("CMakeLists.txt", "cmake")
-		-- })
-
-		-- lspconfig["neocmake"].setup({
-		-- 	capabilities = capabilities,
-		-- 	on_attach = on_attach,
-		-- 	-- root_dir = lspconfig.util.root_pattern("CMakeLists.txt", "cmake")
-		-- })
-
-		-- lspconfig["emmet_language_server"].setup({
-		-- 	capabilities = capabilities,
-		-- 	on_attach = on_attach,
+		-- mason_lspconfig.setup_handlers({
+		-- 	function(server_name)
+		-- 		lspconfig[server_name].setup({
+		-- 			capabilities = capabilities,
+		-- 			on_attach = on_attach,
+		-- 		})
+		-- 	end,
 		--
-		-- 	-- root_dir = lspconfig.util.root_pattern("index.html"),
-		-- })
-
-		-- lspconfig["cssls"].setup({
-		-- 	capabilities = capabilities,
-		-- 	on_attach = on_attach,
-		-- 	-- root_dir = lspconfig.util.root_pattern("index.html"),
-		-- })
-
-		-- lspconfig["html"].setup({
-		-- 	capabilities = capabilities,
-		-- 	on_attach = on_attach,
-		-- 	-- root_dir = lspconfig.util.root_pattern("index.html"),
-		-- })
-
-		-- lspconfig["taplo"].setup({
-		-- 	capabilities = capabilities,
-		-- 	on_attach = on_attach,
-		-- })
-
-		-- lspconfig["jedi_language_server"].setup({
-		-- 	capabilities = capabilities,
-		-- 	on_attach = on_attach,
-		-- })
-
-		-- lspconfig["pyright"].setup({
-		-- 	capabilities = capabilities,
-		-- 	on_attach = on_attach,
-		-- })
-
-		-- lspconfig["marksman"].setup({
-		-- 	capabilities = capabilities,
-		-- 	on_attach = on_attach,
-		-- })
-
-		-- lspconfig["kotlin_language_server"].setup({
-		-- 	capabilities = capabilities,
-		-- 	on_attach = on_attach,
+		-- 	["asm_lsp"] = function()
+		-- 		lspconfig["asm_lsp"].setup({
+		-- 			capabilities = capabilities,
+		-- 			on_attach = on_attach,
+		-- 			root_dir = lspconfig.util.root_pattern("*.asm", ".git"),
+		-- 		})
+		-- 	end,
+		-- 	["jdtls"] = function()
+		-- 		lspconfig["jdtls"].setup({
+		-- 			capabilities = capabilities,
+		-- 			on_attach = on_attach,
+		--
+		-- 			filetypes = { "java", "kotlin" },
+		--
+		-- 			cmd = { "jdtls" },
+		-- 		})
+		-- 	end,
+		-- 	-- ["pasls"] = function()
+		-- 	-- 	lspconfig["pasls"].setup({
+		-- 	-- 		capabilities = capabilities,
+		-- 	-- 		on_attach = on_attach,
+		-- 	-- 		root_dir = lspconfig.util.root_pattern("*.dpr", "*.dproj"),
+		-- 	-- 	})
+		-- 	-- end,
+		-- 	["lua_ls"] = function()
+		-- 		lspconfig["lua_ls"].setup({
+		-- 			capabilities = capabilities,
+		-- 			on_attach = on_attach,
+		-- 			settings = { -- custom settings for lua
+		-- 				Lua = {
+		-- 					-- make the language server recognize "vim" global
+		-- 					diagnostics = {
+		-- 						globals = { "vim" },
+		-- 					},
+		-- 					workspace = {
+		-- 						-- make language server aware of runtime files
+		-- 						library = {
+		-- 							[vim.fn.expand("$VIMRUNTIME/lua")] = true,
+		-- 							[vim.fn.stdpath("config") .. "/lua"] = true,
+		-- 						},
+		-- 					},
+		-- 				},
+		-- 			},
+		-- 		})
+		-- 	end,
 		-- })
 	end,
 }
