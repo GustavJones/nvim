@@ -11,6 +11,13 @@ vim.opt.softtabstop = 2
 vim.opt.expandtab = true
 vim.opt.wrap = false
 
+if vim.loop.os_uname().sysname == "Windows_NT" then
+  vim.opt.shell = "powershell.exe"
+  vim.opt.shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command"
+  vim.opt.shellquote = ""
+  vim.opt.shellxquote = ""
+end
+
 vim.opt.clipboard:append("unnamedplus")
 -- vim.opt.swapfile = false
 vim.opt.termguicolors = true
