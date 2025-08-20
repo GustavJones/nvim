@@ -30,6 +30,7 @@ return {
 				"taplo",
 				"csharp_ls",
 				"ts_ls",
+				"bashls",
 			},
 			automatic_installation = true,
 			automatic_enable = false,
