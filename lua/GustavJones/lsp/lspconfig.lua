@@ -91,129 +91,100 @@ return {
       lineFoldingOnly = true,
     }
 
-    local custom_lsp_setups = {
-      ["asm_lsp"] = function()
-        lspconfig["asm_lsp"].setup({
-          capabilities = capabilities,
-          on_attach = on_attach,
-          root_dir = lspconfig.util.root_pattern("*.asm", ".git"),
-        })
-      end,
-      ["jdtls"] = function()
-        lspconfig["jdtls"].setup({
-          capabilities = capabilities,
-          on_attach = on_attach,
+		local custom_lsp_setups = {
+			["asm_lsp"] = function()
+        vim.lsp.config("asm_lsp", {
+					capabilities = capabilities,
+					on_attach = on_attach,
+					root_dir = lspconfig.util.root_pattern("*.asm", ".git"),
+				})
+
+				-- lspconfig["asm_lsp"].setup({
+				-- 	capabilities = capabilities,
+				-- 	on_attach = on_attach,
+				-- 	root_dir = lspconfig.util.root_pattern("*.asm", ".git"),
+				-- })
+			end,
+			["jdtls"] = function()
+        vim.lsp.config("jdtls", {
+					capabilities = capabilities,
+					on_attach = on_attach,
 
           filetypes = { "java", "kotlin" },
 
-          cmd = { "jdtls" },
-        })
-      end,
-      -- ["pasls"] = function()
-      -- 	lspconfig["pasls"].setup({
-      -- 		capabilities = capabilities,
-      -- 		on_attach = on_attach,
-      -- 		root_dir = lspconfig.util.root_pattern("*.dpr", "*.dproj"),
-      -- 	})
-      -- end,
-      ["lua_ls"] = function()
-        lspconfig["lua_ls"].setup({
-          capabilities = capabilities,
-          on_attach = on_attach,
-          settings = { -- custom settings for lua
-            Lua = {
-              -- make the language server recognize "vim" global
-              diagnostics = {
-                globals = { "vim" },
-              },
-              workspace = {
-                -- make language server aware of runtime files
-                library = {
-                  [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-                  [vim.fn.stdpath("config") .. "/lua"] = true,
-                },
-              },
-            },
-          },
-        })
-      end,
-    }
+					cmd = { "jdtls" },
+				})
+
+				-- lspconfig["jdtls"].setup({
+				-- 	capabilities = capabilities,
+				-- 	on_attach = on_attach,
+				--
+				-- 	filetypes = { "java", "kotlin" },
+				--
+				-- 	cmd = { "jdtls" },
+				-- })
+			end,
+			["lua_ls"] = function()
+        vim.lsp.config("lua_ls", {
+					capabilities = capabilities,
+					on_attach = on_attach,
+					settings = { -- custom settings for lua
+						Lua = {
+							-- make the language server recognize "vim" global
+							diagnostics = {
+								globals = { "vim" },
+							},
+							workspace = {
+								-- make language server aware of runtime files
+								library = {
+									[vim.fn.expand("$VIMRUNTIME/lua")] = true,
+									[vim.fn.stdpath("config") .. "/lua"] = true,
+								},
+							},
+						},
+					},
+				})
+
+				-- lspconfig["lua_ls"].setup({
+				-- 	capabilities = capabilities,
+				-- 	on_attach = on_attach,
+				-- 	settings = { -- custom settings for lua
+				-- 		Lua = {
+				-- 			-- make the language server recognize "vim" global
+				-- 			diagnostics = {
+				-- 				globals = { "vim" },
+				-- 			},
+				-- 			workspace = {
+				-- 				-- make language server aware of runtime files
+				-- 				library = {
+				-- 					[vim.fn.expand("$VIMRUNTIME/lua")] = true,
+				-- 					[vim.fn.stdpath("config") .. "/lua"] = true,
+				-- 				},
+				-- 			},
+				-- 		},
+				-- 	},
+				-- })
+			end,
+		}
 
     local installed_lsp_servers = mason_lspconfig.get_installed_servers()
 
-    for i = 1, #installed_lsp_servers do
-      if custom_lsp_setups[installed_lsp_servers[i]] then
-        custom_lsp_setups[installed_lsp_servers[i]]()
-      else
-        lspconfig[installed_lsp_servers[i]].setup({
-          capabilities = capabilities,
-          on_attach = on_attach,
-        })
-      end
-    end
+		for i = 1, #installed_lsp_servers do
+			if custom_lsp_setups[installed_lsp_servers[i]] then
+				custom_lsp_setups[installed_lsp_servers[i]]()
+			else
+        vim.lsp.config(installed_lsp_servers[i], {
+					capabilities = capabilities,
+					on_attach = on_attach,
+				})
 
-    vim.api.nvim_create_autocmd("LspAttach", {
-      callback = function(args)
-        local client = vim.lsp.get_client_by_id(args.data.client_id)
-        if client and client.supports_method("textDocument/inlayHint") then
-          vim.lsp.inlay_hint.enable(true, { bufnr = args.buf })
-        end
-      end
-    })
+				-- lspconfig[installed_lsp_servers[i]].setup({
+				-- 	capabilities = capabilities,
+				-- 	on_attach = on_attach,
+				-- })
+			end
 
-    -- mason_lspconfig.setup_handlers({
-    -- 	function(server_name)
-    -- 		lspconfig[server_name].setup({
-    -- 			capabilities = capabilities,
-    -- 			on_attach = on_attach,
-    -- 		})
-    -- 	end,
-    --
-    -- 	["asm_lsp"] = function()
-    -- 		lspconfig["asm_lsp"].setup({
-    -- 			capabilities = capabilities,
-    -- 			on_attach = on_attach,
-    -- 			root_dir = lspconfig.util.root_pattern("*.asm", ".git"),
-    -- 		})
-    -- 	end,
-    -- 	["jdtls"] = function()
-    -- 		lspconfig["jdtls"].setup({
-    -- 			capabilities = capabilities,
-    -- 			on_attach = on_attach,
-    --
-    -- 			filetypes = { "java", "kotlin" },
-    --
-    -- 			cmd = { "jdtls" },
-    -- 		})
-    -- 	end,
-    -- 	-- ["pasls"] = function()
-    -- 	-- 	lspconfig["pasls"].setup({
-    -- 	-- 		capabilities = capabilities,
-    -- 	-- 		on_attach = on_attach,
-    -- 	-- 		root_dir = lspconfig.util.root_pattern("*.dpr", "*.dproj"),
-    -- 	-- 	})
-    -- 	-- end,
-    -- 	["lua_ls"] = function()
-    -- 		lspconfig["lua_ls"].setup({
-    -- 			capabilities = capabilities,
-    -- 			on_attach = on_attach,
-    -- 			settings = { -- custom settings for lua
-    -- 				Lua = {
-    -- 					-- make the language server recognize "vim" global
-    -- 					diagnostics = {
-    -- 						globals = { "vim" },
-    -- 					},
-    -- 					workspace = {
-    -- 						-- make language server aware of runtime files
-    -- 						library = {
-    -- 							[vim.fn.expand("$VIMRUNTIME/lua")] = true,
-    -- 							[vim.fn.stdpath("config") .. "/lua"] = true,
-    -- 						},
-    -- 					},
-    -- 				},
-    -- 			},
-    -- 		})
-    -- 	end,
-    -- })
-  end,
+      vim.lsp.enable(installed_lsp_servers[i], true)
+		end
+	end,
 }
