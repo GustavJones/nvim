@@ -17,13 +17,13 @@ return {
         enable_auto_complete = false,
       },
 			context_window = 512,
+      throttle = 1000,
 			provider_options = {
 				openai_fim_compatible = {
 					api_key = "TERM",
 					name = "Ollama",
 					end_point = "http://10.0.0.160:11434/v1/completions",
-					-- model = "qwen2.5-coder:7b",
-          model = "qwen2.5-coder:7b",
+          model = "qwen2.5-coder:14b",
 					optional = {
 						max_tokens = 100,
 						top_p = 0.9,

@@ -54,7 +54,7 @@ return {
 				end,
 			},
 			mapping = cmp.mapping.preset.insert({
-				["<A-y>"] = require("minuet").make_cmp_map(),
+				["<C-`>"] = require("minuet").make_cmp_map(),
 				["<C-k>"] = cmp.mapping.select_prev_item(), -- previous suggestion
 				["<C-j>"] = cmp.mapping.select_next_item(), -- next suggestion
 				["<C-b>"] = cmp.mapping.scroll_docs(-4),
