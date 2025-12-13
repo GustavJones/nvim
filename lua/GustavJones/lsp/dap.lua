@@ -37,10 +37,9 @@ return {
 			dap.continue()
 		end, { desc = "Continue", noremap = true, silent = true })
 
-    vim.keymap.set("n", "<leader>dl", function()
+		vim.keymap.set("n", "<leader>dl", function()
 			dap.run_last()
 		end, { desc = "Run Last Configuration", noremap = true, silent = true })
-
 
 		vim.keymap.set("n", "<leader>da", function()
 			-- local arguments = vim.fn.input("Arguments: ", "", "file")
@@ -69,16 +68,15 @@ return {
 			end)
 		end, { desc = "Continue with Arguments", noremap = true, silent = true })
 
-    vim.keymap.set("n", "<leader>dwa", function()
+		vim.keymap.set("n", "<leader>dwa", function()
 			dapui.elements.watches.add()
 		end, { desc = "Add Watch Expression", noremap = true, silent = true })
 
-    vim.keymap.set("n", "<leader>dwd", function()
+		vim.keymap.set("n", "<leader>dwd", function()
 			dapui.elements.watches.remove()
 		end, { desc = "Remove Watch Expression", noremap = true, silent = true })
 
-
-    vim.keymap.set("n", "<leader>dp", function()
+		vim.keymap.set("n", "<leader>dp", function()
 			dap.step_back()
 		end, { desc = "Step Back", noremap = true, silent = true })
 
@@ -103,7 +101,7 @@ return {
 		end, { desc = "Exit Debug session", noremap = true, silent = true })
 
 		mason_dap.setup({
-			ensure_installed = { "cppdbg", "javadbg", "kotlin", "python", "coreclr" },
+			ensure_installed = { "cppdbg", "javadbg", "kotlin", "python", "coreclr", "delve", "dart" },
 			automatic_installation = true,
 			handlers = {},
 		})
