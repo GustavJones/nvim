@@ -31,6 +31,8 @@ return {
 				"ts_ls",
 				"bashls",
         "gopls",
+        "svelte",
+        "yamlls"
 			},
 
 			automatic_installation = true,
@@ -164,19 +166,21 @@ return {
 		local installed_lsp_servers = mason_lspconfig.get_installed_servers()
 
 		for i = 1, #installed_lsp_servers do
-			if custom_lsp_setups[installed_lsp_servers[i]] then
-				custom_lsp_setups[installed_lsp_servers[i]]()
-			else
-				vim.lsp.config(installed_lsp_servers[i], {
-					capabilities = capabilities,
-					on_attach = on_attach,
-				})
+      vim.lsp.enable(installed_lsp_servers[i])
 
-				-- lspconfig[installed_lsp_servers[i]].setup({
-				-- 	capabilities = capabilities,
-				-- 	on_attach = on_attach,
-				-- })
-			end
+			-- if custom_lsp_setups[installed_lsp_servers[i]] then
+			-- 	custom_lsp_setups[installed_lsp_servers[i]]()
+			-- else
+			-- 	vim.lsp.config(installed_lsp_servers[i], {
+			-- 		capabilities = capabilities,
+			-- 		on_attach = on_attach,
+			-- 	})
+			--
+			-- 	-- lspconfig[installed_lsp_servers[i]].setup({
+			-- 	-- 	capabilities = capabilities,
+			-- 	-- 	on_attach = on_attach,
+			-- 	-- })
+			-- end
 
 			vim.lsp.enable(installed_lsp_servers[i], true)
 		end

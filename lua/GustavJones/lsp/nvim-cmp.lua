@@ -54,7 +54,6 @@ return {
 				end,
 			},
 			mapping = cmp.mapping.preset.insert({
-				["<C-`>"] = require("minuet").make_cmp_map(),
 				["<C-k>"] = cmp.mapping.select_prev_item(), -- previous suggestion
 				["<C-j>"] = cmp.mapping.select_next_item(), -- next suggestion
 				["<C-b>"] = cmp.mapping.scroll_docs(-4),
@@ -76,7 +75,6 @@ return {
 			preselect = "item",
 			-- sources for autocompletion
 			sources = cmp.config.sources({
-				{ name = "minuet" },
 				{ name = "luasnip" }, -- snippets
 				{ name = "nvim_lsp" },
 				{ name = "buffer" }, -- text within current buffer
