@@ -8,23 +8,13 @@ return {
 		vim.o.foldlevelstart = 99
 		vim.o.foldenable = true
 
-		vim.keymap.set(
-			"n",
-			"<leader>ct",
-			"zi",
-			{ noremap = true, silent = true, desc = "Toggle folding system ON/OFF" }
-		)
-		vim.keymap.set("n", "<leader>cc", "za", { noremap = true, silent = true, desc = "Toggle fold under cursor" })
-		vim.keymap.set(
-			"n",
-			"<leader>cC",
-			"zA",
-			{ noremap = true, silent = true, desc = "Toggle all folds under cursor" }
-		)
-		vim.keymap.set("n", "<leader>co", "zo", { noremap = true, silent = true, desc = "Open fold" })
-		vim.keymap.set("n", "<leader>cO", "zR", { noremap = true, silent = true, desc = "Open all folds" })
-		vim.keymap.set("n", "<leader>cp", "zc", { noremap = true, silent = true, desc = "Close fold" })
-		vim.keymap.set("n", "<leader>cP", "zM", { noremap = true, silent = true, desc = "Close all folds" })
+		vim.keymap.set( "n", "<leader>bC", "zi", { noremap = true, silent = true, desc = "Toggle folding system ON/OFF" })
+		vim.keymap.set("n", "<leader>bt", "za", { noremap = true, silent = true, desc = "Toggle fold under cursor" })
+		vim.keymap.set( "n", "<leader>bT", "zA", { noremap = true, silent = true, desc = "Toggle all folds under cursor" })
+		vim.keymap.set("n", "<leader>bo", "zo", { noremap = true, silent = true, desc = "Open fold" })
+		vim.keymap.set("n", "<leader>bO", "zR", { noremap = true, silent = true, desc = "Open all folds" })
+		vim.keymap.set("n", "<leader>bp", "zc", { noremap = true, silent = true, desc = "Close fold" })
+		vim.keymap.set("n", "<leader>bP", "zM", { noremap = true, silent = true, desc = "Close all folds" })
 
 		local handler = function(virtText, lnum, endLnum, width, truncate)
 			local newVirtText = {}
