@@ -1,0 +1,6 @@
+[submodule "mason.nvim"]
+	path = external/mason
+	url = https://github.com/mason-org/mason.nvim.git
+[submodule "nightfox.nvim"]
+	path = external/nightfox
+	url = https://github.com/EdenEast/nightfox.nvim.git
