@@ -2,4 +2,5 @@ local functions = require("GustavJones.functions")
 functions.AddPathToRuntimePath(functions.GetConfigSubdirectory("external/mason"))
 functions.AddPathToRuntimePath(functions.GetConfigSubdirectory("external/nightfox"))
 
-require("mason").setup()
+MASON = require("mason").setup()
+MASON_REGISTRY = require("mason-registry")

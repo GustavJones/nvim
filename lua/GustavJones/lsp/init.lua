@@ -1,12 +1,13 @@
-vim.lsp.config["lua_ls"] = require("GustavJones.lsp.lua_ls")
-vim.lsp.config["clangd"] = require("GustavJones.lsp.clangd")
-vim.lsp.config["jdtls"] = require("GustavJones.lsp.jdtls")
-vim.lsp.config["pyright"] = require("GustavJones.lsp.pyright")
+local lsp_servers = MASON_REGISTRY.get_installed_package_names()
 
-vim.lsp.enable("lua_ls")
-vim.lsp.enable("clangd")
-vim.lsp.enable("jdtls")
-vim.lsp.enable("pyright")
+for _, name in ipairs(lsp_servers) do
+	local ok, result = pcall(require, "GustavJones.lsp."..name)
+
+	if ok then
+		vim.lsp.config[name] = result;
+		vim.lsp.enable(name)
+	end
+end
 
 vim.lsp.inlay_hint.enable(true)
 vim.diagnostic.config({ virtual_text = true })
