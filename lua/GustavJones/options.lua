@@ -17,4 +17,8 @@ vim.o.softtabstop = indent_size
 vim.o.laststatus = 3
 vim.o.wrap = false
 
+vim.o.foldmethod = 'syntax'
+vim.o.foldlevel = 99
+vim.o.foldenable = true
+
 vim.cmd.colorscheme("carbonfox")

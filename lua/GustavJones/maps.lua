@@ -8,6 +8,7 @@ vim.keymap.set("n", "<leader>t", function()
 
 	vim.cmd.terminal()
 	vim.bo.buflisted = false
+	vim.cmd("startinsert")
 end)
 
 vim.keymap.set("n", "<leader>g", function()
