@@ -1,3 +1,4 @@
+-- Use '-' to go a directory back and 'gn' to go to directory under cursor.
 vim.keymap.set("n", "<leader>e", ":Explore " .. vim.fn.getcwd() .. "\r", { silent = true })
 
 vim.keymap.set("n", "<leader>t", function()
