@@ -16,6 +16,7 @@ vim.o.shiftwidth = indent_size
 vim.o.softtabstop = indent_size
 vim.o.laststatus = 3
 vim.o.wrap = false
+vim.o.clipboard = "unnamedplus"
 
 vim.o.foldmethod = 'syntax'
 vim.o.foldlevel = 99
